@@ -10,103 +10,103 @@ using personats.Data.Entity;
 
 namespace personats.Controllers
 {
-    public class PeopleController : Controller
+    public class EnterprisesController : Controller
     {
         private Context db = new Context();
 
-        // GET: People
+        // GET: Enterprises
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Enterprises.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: Enterprises/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Enterprise enterprise = db.Enterprises.Find(id);
+            if (enterprise == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(enterprise);
         }
 
-        // GET: People/Create
+        // GET: Enterprises/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
+        // POST: Enterprises/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Enterprise enterprise)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.Enterprises.Add(enterprise);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(enterprise);
         }
 
-        // GET: People/Edit/5
+        // GET: Enterprises/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Enterprise enterprise = db.Enterprises.Find(id);
+            if (enterprise == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(enterprise);
         }
 
-        // POST: People/Edit/5
+        // POST: Enterprises/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Enterprise enterprise)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                db.Entry(enterprise).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(enterprise);
         }
 
-        // GET: People/Delete/5
+        // GET: Enterprises/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Enterprise enterprise = db.Enterprises.Find(id);
+            if (enterprise == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(enterprise);
         }
 
-        // POST: People/Delete/5
+        // POST: Enterprises/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Person person = db.People.Find(id);
-            db.People.Remove(person);
+            Enterprise enterprise = db.Enterprises.Find(id);
+            db.Enterprises.Remove(enterprise);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

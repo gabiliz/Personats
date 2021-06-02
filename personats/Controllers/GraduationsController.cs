@@ -10,103 +10,103 @@ using personats.Data.Entity;
 
 namespace personats.Controllers
 {
-    public class PeopleController : Controller
+    public class GraduationsController : Controller
     {
         private Context db = new Context();
 
-        // GET: People
+        // GET: Graduations
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Graduations.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: Graduations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Graduation graduation = db.Graduations.Find(id);
+            if (graduation == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(graduation);
         }
 
-        // GET: People/Create
+        // GET: Graduations/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
+        // POST: Graduations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Graduation graduation)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.Graduations.Add(graduation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(graduation);
         }
 
-        // GET: People/Edit/5
+        // GET: Graduations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Graduation graduation = db.Graduations.Find(id);
+            if (graduation == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(graduation);
         }
 
-        // POST: People/Edit/5
+        // POST: Graduations/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Graduation graduation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                db.Entry(graduation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(graduation);
         }
 
-        // GET: People/Delete/5
+        // GET: Graduations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Graduation graduation = db.Graduations.Find(id);
+            if (graduation == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(graduation);
         }
 
-        // POST: People/Delete/5
+        // POST: Graduations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Person person = db.People.Find(id);
-            db.People.Remove(person);
+            Graduation graduation = db.Graduations.Find(id);
+            db.Graduations.Remove(graduation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

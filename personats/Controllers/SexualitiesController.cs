@@ -10,103 +10,103 @@ using personats.Data.Entity;
 
 namespace personats.Controllers
 {
-    public class PeopleController : Controller
+    public class SexualitiesController : Controller
     {
         private Context db = new Context();
 
-        // GET: People
+        // GET: Sexualities
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Sexualities.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: Sexualities/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Sexuality sexuality = db.Sexualities.Find(id);
+            if (sexuality == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(sexuality);
         }
 
-        // GET: People/Create
+        // GET: Sexualities/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
+        // POST: Sexualities/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Sexuality sexuality)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.Sexualities.Add(sexuality);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(sexuality);
         }
 
-        // GET: People/Edit/5
+        // GET: Sexualities/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Sexuality sexuality = db.Sexualities.Find(id);
+            if (sexuality == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(sexuality);
         }
 
-        // POST: People/Edit/5
+        // POST: Sexualities/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Sexuality sexuality)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                db.Entry(sexuality).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(sexuality);
         }
 
-        // GET: People/Delete/5
+        // GET: Sexualities/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Sexuality sexuality = db.Sexualities.Find(id);
+            if (sexuality == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(sexuality);
         }
 
-        // POST: People/Delete/5
+        // POST: Sexualities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Person person = db.People.Find(id);
-            db.People.Remove(person);
+            Sexuality sexuality = db.Sexualities.Find(id);
+            db.Sexualities.Remove(sexuality);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

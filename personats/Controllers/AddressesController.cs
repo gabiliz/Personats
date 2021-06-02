@@ -10,103 +10,103 @@ using personats.Data.Entity;
 
 namespace personats.Controllers
 {
-    public class PeopleController : Controller
+    public class AddressesController : Controller
     {
         private Context db = new Context();
 
-        // GET: People
+        // GET: Addresses
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Addresses.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: Addresses/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Address address = db.Addresses.Find(id);
+            if (address == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(address);
         }
 
-        // GET: People/Create
+        // GET: Addresses/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
+        // POST: Addresses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Address address)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.Addresses.Add(address);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(address);
         }
 
-        // GET: People/Edit/5
+        // GET: Addresses/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Address address = db.Addresses.Find(id);
+            if (address == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(address);
         }
 
-        // POST: People/Edit/5
+        // POST: Addresses/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Address address)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                db.Entry(address).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(address);
         }
 
-        // GET: People/Delete/5
+        // GET: Addresses/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Address address = db.Addresses.Find(id);
+            if (address == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(address);
         }
 
-        // POST: People/Delete/5
+        // POST: Addresses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Person person = db.People.Find(id);
-            db.People.Remove(person);
+            Address address = db.Addresses.Find(id);
+            db.Addresses.Remove(address);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

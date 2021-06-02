@@ -10,103 +10,103 @@ using personats.Data.Entity;
 
 namespace personats.Controllers
 {
-    public class PeopleController : Controller
+    public class RecruitersController : Controller
     {
         private Context db = new Context();
 
-        // GET: People
+        // GET: Recruiters
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Recruiters.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: Recruiters/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Recruiter recruiter = db.Recruiters.Find(id);
+            if (recruiter == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(recruiter);
         }
 
-        // GET: People/Create
+        // GET: Recruiters/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
+        // POST: Recruiters/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Recruiter recruiter)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.Recruiters.Add(recruiter);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(recruiter);
         }
 
-        // GET: People/Edit/5
+        // GET: Recruiters/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Recruiter recruiter = db.Recruiters.Find(id);
+            if (recruiter == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(recruiter);
         }
 
-        // POST: People/Edit/5
+        // POST: Recruiters/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Cpf,Birthdate,Address,Genre,Formation")] Recruiter recruiter)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                db.Entry(recruiter).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(recruiter);
         }
 
-        // GET: People/Delete/5
+        // GET: Recruiters/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Recruiter recruiter = db.Recruiters.Find(id);
+            if (recruiter == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(recruiter);
         }
 
-        // POST: People/Delete/5
+        // POST: Recruiters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Person person = db.People.Find(id);
-            db.People.Remove(person);
+            Recruiter recruiter = db.Recruiters.Find(id);
+            db.Recruiters.Remove(recruiter);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
